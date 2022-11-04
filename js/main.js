@@ -54,3 +54,15 @@ const hideSearch = () => {
 searchStarterEl.addEventListener("click", () => showSearch());
 searchCloserEl.addEventListener("click", () => hideSearch());
 searchShadowEl.addEventListener("click", () => hideSearch());
+
+// intersaction Observer
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) {
+      return entry.target.classList.remove("show");
+    }
+    entry.target.classList.add("show");
+  });
+});
+const infoEls = document.querySelectorAll(".info");
+infoEls.forEach((el) => io.observe(el));
